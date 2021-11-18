@@ -1,0 +1,47 @@
+create table Aluno(
+   	matricula numeric       not null,
+   	nome      varchar(50)   not null,
+   	cpf      varchar(11),
+	telefone  varchar(20),
+   	primary key (matricula)        
+);
+create table Turma(
+   	codTurma  integer   not null,
+   	sala      integer   not null,
+   	qtdAlunos INTEGER,
+   	primary key (codTurma)        
+);
+create table Disciplina(
+   	codDisciplina integer not null,
+   	cargaHoraria varchar(4)     not null,
+	nome varchar(50) not null,
+   	primary key (codDisciplina)        
+);
+create table Professor(
+   	codProfessor  integer not null,
+   	nome varchar(50) not null,
+   	primary key (codProfessor)   
+);
+create table professor_disciplina(
+   	IdProfessor integer not null,
+	codProfessor  integer not null,
+	codDisciplina integer not null,
+	foreign key (codDisciplina) references Disciplina(codDisciplina),
+	foreign key (codProfessor) references Professor(codProfessor),
+   	primary key (IdProfessor)        
+);
+create table turma_disciplina(
+   	dia varchar(50)  not null,
+	codDisciplina integer not null,
+	codTurma  integer   not null,
+	foreign key (codDisciplina) references Disciplina(codDisciplina),
+	foreign key (codTurma) references Turma(codTurma)
+);
+
+select * from aluno
+select * from turma
+select * from matricula
+select * from disciplina
+select * from professor
+select * from professor_disciplina
+select * from turma_disciplina
